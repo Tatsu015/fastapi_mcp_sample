@@ -5,12 +5,12 @@ from fastapi_mcp import FastApiMCP
 app = FastAPI()
 
 
-@app.get("/")
+@app.get("/", operation_id="public_endpoint")
 def public_endpoint():
     return {"message": "public endpoint"}
 
 
-@app.get("/private")
+@app.get("/private", operation_id="private_endpoint")
 def private_endpoint():
     print("aaa")
     return {"message": "private endpoinT"}
