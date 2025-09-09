@@ -5,5 +5,11 @@ app = FastAPI()
 
 
 @app.get("/")
-def read_root():
-    return {"Hello": "World"}
+def public_endpoint():
+    return {"message": "public endpoint"}
+
+
+@app.get("/private")
+def private_endpoint():
+    print("aaa")
+    return {"message": "private endpoint"}
