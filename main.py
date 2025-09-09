@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi_mcp import FastApiMCP
 
 
 app = FastAPI()
@@ -12,4 +13,8 @@ def public_endpoint():
 @app.get("/private")
 def private_endpoint():
     print("aaa")
-    return {"message": "private endpoint"}
+    return {"message": "private endpoinT"}
+
+
+mcp = FastApiMCP(app)
+mcp.mount()
