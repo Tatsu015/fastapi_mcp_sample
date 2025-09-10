@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Header, HTTPException
 from fastapi_mcp import FastApiMCP
 
 
@@ -11,10 +11,11 @@ def public_endpoint():
 
 
 @app.get("/private", operation_id="private_endpoint")
-def private_endpoint():
-    print("aaa")
+def private_endpoint(x_token: str = Header(None)):
+    if x_token != "valid-token":
+        raise HTTPException(status_code=401, detail="Invalid token")
     return {"message": "hello! this is private endpoint"}
 
 
 mcp = FastApiMCP(app)
-mcp.mount()
+mcp.mount_http()
