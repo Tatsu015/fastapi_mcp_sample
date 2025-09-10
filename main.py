@@ -17,5 +17,9 @@ def private_endpoint(x_token: str = Header(None)):
     return {"message": "hello! this is private endpoint"}
 
 
-mcp = FastApiMCP(app)
+mcp = FastApiMCP(
+    app,
+    headers=["authorization", "x-token"],  # add any header names you want forwarded
+)
+
 mcp.mount_http()
